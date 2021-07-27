@@ -1,0 +1,43 @@
+##IMPORT LIBRARY
+import numpy as np
+import pandas as pd
+from sklearn.datasets import load_iris
+
+#LOAD DATA
+import os
+os.chdir('C:\\Users\\NEW\\Desktop\\python\\class 8 - classification')
+data = pd.read_csv('iris.csv')
+data
+
+#DATA EXPLORATION
+data.target = iris.target
+data1 = data(data.target==1)
+data2 = data(data.target==2)
+data.target.apply(lambda x:iris.target_names[x])
+
+#DATA VISUALIZATION
+import matplotlib.pyplot as plt
+plt.scatter(data1["sepal length"],data1["sepal width"],color = "blue",marker ="+")
+plt.scatter(data2["sepal length"],data2["sepal width"],color = "green",marker ="+")
+
+#TRAIN&TEST SPLIT
+from sklearn.model_selection import train_test_split
+x = data.drop(["target"],["target_names"],axis = 1)
+y = data.target
+
+#data split
+x_train,x_test,y_train,y_test = train_test_split(x,y,test_size = 0.2)
+
+#SVM MODEL
+from sklearn.svm import SVC
+model = SVC()
+ 
+Hint:
+    c=1,2,3 (regularization)
+    Gamma = 1,2,3
+    kernal = linear,rbf,sigmoid,polynomial (select based upon data visualization)
+
+model.fit(x_train,y_train)
+
+#DATA EVALUATION
+model.score(x_test,y_test)
